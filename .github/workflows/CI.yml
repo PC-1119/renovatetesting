@@ -29,8 +29,12 @@ jobs:
       uses: renovatebot/github-action@v46.1.5
       with:
         token: ${{ secrets.RENOVATE_TOKEN }}
+        docker-env: |
+          AWS_ACCESS_KEY_ID
+          AWS_SECRET_ACCESS_KEY
+          AWS_REGION
       env:
         RENOVATE_REPOSITORIES: PC-1119/renovatetesting
-        RENOVATE_AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-        RENOVATE_AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        RENOVATE_AWS_REGION: us-east-1
+        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        AWS_REGION: us-east-1us-east-1
