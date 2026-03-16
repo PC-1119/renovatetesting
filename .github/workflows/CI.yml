@@ -25,16 +25,15 @@ jobs:
         --username AWS \
         --password-stdin 819004394028.dkr.ecr.us-east-1.amazonaws.com
   
+    - name: Generate ECR token
+      id: ecr
+      run: |
+        echo "ECR_TOKEN=$(aws ecr get-login-password --region us-east-1)" >> $GITHUB_ENV
+    
     - name: Run Renovate
       uses: renovatebot/github-action@v46.1.5
       with:
         token: ${{ secrets.RENOVATE_TOKEN }}
-        docker-env: |
-          AWS_ACCESS_KEY_ID
-          AWS_SECRET_ACCESS_KEY
-          AWS_REGION
       env:
         RENOVATE_REPOSITORIES: PC-1119/renovatetesting
-        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        AWS_REGION: us-east-1us-east-1
+        ECR_TOKEN: ${{ env.ECR_TOKEN }}
