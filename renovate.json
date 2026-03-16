@@ -3,5 +3,13 @@
   "extends": ["config:recommended"],
   "recreateWhen": "always",
   "prHourlyLimit": 10,
-  "prConcurrentLimit": 10
+  "prConcurrentLimit": 10,
+  "hostRules": [
+    {
+      "hostType": "docker",
+      "matchHost": "819004394028.dkr.ecr.us-east-1.amazonaws.com",
+      "username": "AWS",
+      "password": "{{ env.ECR_TOKEN }}"
+    }
+  ]
 }
